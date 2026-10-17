@@ -1,0 +1,58 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+env:
+  OPA_VERSION: v1.21.2
+  HCL2JSON_VERSION: v0.6.9
+
+jobs:
+  policy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+      - name: Install OPA and hcl2json (pinned)
+        run: |
+          curl -sSL -o opa "https://github.com/open-policy-agent/opa/releases/download/${OPA_VERSION}/opa_linux_amd64_static"
+          curl -sSL -o hcl2json "https://github.com/tmccombs/hcl2json/releases/download/${HCL2JSON_VERSION}/hcl2json_linux_amd64"
+          sudo install opa hcl2json /usr/local/bin/
+          opa version | head -1
+      - name: Policies are formatted and pass the strict checker
+        run: |
+          opa fmt --fail policy/
+          opa check --strict policy/
+      - name: Rego unit tests
+        run: opa test policy/
+      - name: Every rule against every fixture (44 bad, 2 good, exact expected rule ids)
+        run: python tools/run_matrix.py
+      - name: The harness tests and the gate command
+        run: |
+          python -m pip install pytest pyyaml
+          python -m pytest
+
+  terraform:
+    # The compliant fixtures must also be valid for the real google provider schema.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: hashicorp/setup-terraform@v4
+        with:
+          terraform_wrapper: false
+      - run: bash tools/validate_good.sh
+
+  workflows:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: |
+          bash <(curl -s https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+          ./actionlint -color

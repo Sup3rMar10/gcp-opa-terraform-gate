@@ -1,0 +1,135 @@
+{
+  "gcs-no-ubla": [
+    "GCS-001"
+  ],
+  "gcs-ubla-false": [
+    "GCS-001"
+  ],
+  "gcs-ubla-as-string": [
+    "GCS-001"
+  ],
+  "gcs-no-pap": [
+    "GCS-002"
+  ],
+  "gcs-pap-inherited": [
+    "GCS-002"
+  ],
+  "gcs-no-versioning": [
+    "GCS-003"
+  ],
+  "gcs-versioning-off": [
+    "GCS-003"
+  ],
+  "gcs-no-labels": [
+    "LBL-001"
+  ],
+  "gcs-missing-env-label": [
+    "LBL-001"
+  ],
+  "gcs-empty-owner-label": [
+    "LBL-001"
+  ],
+  "gcs-two-buckets-one-bad": [
+    "GCS-001"
+  ],
+  "iam-public-member": [
+    "IAM-001"
+  ],
+  "iam-all-authenticated": [
+    "IAM-001"
+  ],
+  "iam-public-in-binding": [
+    "IAM-001"
+  ],
+  "iam-owner": [
+    "IAM-002"
+  ],
+  "iam-editor-binding": [
+    "IAM-002"
+  ],
+  "iam-sa-key": [
+    "IAM-003"
+  ],
+  "net-ssh-world": [
+    "NET-001"
+  ],
+  "net-rdp-world": [
+    "NET-001"
+  ],
+  "net-port-range": [
+    "NET-001"
+  ],
+  "net-ssh-in-range": [
+    "NET-001"
+  ],
+  "net-range-starts-at-ssh": [
+    "NET-001"
+  ],
+  "net-range-ends-at-rdp": [
+    "NET-001"
+  ],
+  "net-ipv6-ssh": [
+    "NET-001"
+  ],
+  "net-all-protocols": [
+    "NET-002"
+  ],
+  "net-tcp-no-ports": [
+    "NET-002"
+  ],
+  "net-world-among-others": [
+    "NET-001"
+  ],
+  "cmp-no-service-account": [
+    "CMP-001"
+  ],
+  "cmp-default-service-account": [
+    "CMP-001"
+  ],
+  "cmp-external-ip": [
+    "CMP-002"
+  ],
+  "cmp-external-static-ip": [
+    "CMP-002"
+  ],
+  "cmp-no-oslogin": [
+    "CMP-003"
+  ],
+  "cmp-oslogin-false": [
+    "CMP-003"
+  ],
+  "cmp-no-labels": [
+    "LBL-001"
+  ],
+  "sql-no-ip-config": [
+    "SQL-001"
+  ],
+  "sql-public-ipv4": [
+    "SQL-001"
+  ],
+  "sql-open-to-world": [
+    "SQL-001",
+    "SQL-002"
+  ],
+  "sql-no-backups": [
+    "SQL-003"
+  ],
+  "sql-backups-disabled": [
+    "SQL-003"
+  ],
+  "sql-no-deletion-protection": [
+    "SQL-004"
+  ],
+  "sql-deletion-protection-false": [
+    "SQL-004"
+  ],
+  "gke-legacy-abac": [
+    "GKE-001"
+  ],
+  "gke-open-control-plane": [
+    "GKE-002"
+  ],
+  "gke-no-workload-identity": [
+    "GKE-003"
+  ]
+}
