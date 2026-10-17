@@ -4,7 +4,7 @@
 
 **Policy-as-code for Terraform on Google Cloud, with the policies themselves tested.** 19 deny rules and 2 warnings written in Rego for [Open Policy Agent](https://www.openpolicyagent.org/), a `gate` command a pipeline runs on a Terraform directory, and the part most policy repos skip: proof that every rule fires when it should, stays quiet when it should, and that the test harness itself can fail.
 
-> **What is verified, and what is not.** With OPA 1.21.2: **63 Rego unit tests** pass, a matrix of **every rule against 46 fixture Terraform files** (44 deliberately non-compliant, 2 compliant) returns exactly the expected rule ids, 14 pytest tests cover the harness and the gate command, and the compliant fixtures pass `terraform validate` against the **real `google` provider schema**. CI repeats all of it on Linux. I broke the code on purpose several times (below) to confirm the tests can fail. **No Google Cloud project is involved**: the policies read Terraform *text*, so they say nothing about what is actually deployed.
+> **What is verified, and what is not.** With OPA 1.21.2: **63 Rego unit tests** pass, a matrix of **every rule against 46 fixture Terraform files** (44 deliberately non-compliant, 2 compliant) returns exactly the expected rule ids, 14 pytest tests cover the harness and the gate command, and the compliant fixtures pass `terraform validate` against the **real `google` provider schema**. GitHub Actions on Linux ran all of it too, with OPA and hcl2json pinned (2026-10-17). I broke the code on purpose several times (below) to confirm the tests can fail. **No Google Cloud project is involved**: the policies read Terraform *text*, so they say nothing about what is actually deployed.
 
 ## The rules (`policy/`)
 
